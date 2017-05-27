@@ -3,6 +3,7 @@
 Welcome to the Random Birb repository, inside of here you can find a resource in which hosts the random images API. Inwhich none of the images of which Birb uses are hosted due to the fear of infringing on the terms of another individual.
 
 [If you want to checkout a live version of the API head to here.](https://random.birb.pw/)
+
 [I also made a cool script that automatically renames files to smaller names.](https://gist.github.com/jakeoid/875c617dcc9fb1d67e493e5c65a645db)
 
 # Usage
