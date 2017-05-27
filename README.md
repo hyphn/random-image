@@ -6,13 +6,17 @@ If you want to checkout a live version of the API head to [here](https://random.
 
 # Usage
 
-Make sure you have the required dependencies.
+## 1. Make sure you have the required dependencies.
 
-`pip install -r ./requirements.txt`
+```
+pip install -r ./requirements.txt
+```
 
-Run the script and see what port it is running on.
+## 2. Run the script and see what port it is running on.
 
-`python3.5 app.py`
+```
+python3.5 app.py
+```
 
 # Contributing
 
