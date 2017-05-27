@@ -4,7 +4,7 @@ Welcome to the Random Birb repository, inside of here you can find a resource in
 
 [If you want to checkout a live version of the API head to here.](https://random.birb.pw/)
 
-[I also made a cool script that automatically renames files to smaller names.](https://gist.github.com/jakeoid/875c617dcc9fb1d67e493e5c65a645db)
+[This is a script that automatically renames files to smaller names.](https://gist.github.com/jakeoid/875c617dcc9fb1d67e493e5c65a645db)
 
 # Usage
 
