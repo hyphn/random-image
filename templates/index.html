@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Birb API</title>
+
+	<style>
+
+		@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700');
+
+		body {
+			background: #272822;
+			color: #FFFFFF;
+
+			padding: 25px;
+			font-size: 12px;
+			text-align: justify;
+			line-height: 40px;
+		}
+
+		* {
+			font-family: 'Roboto Mono',Menlo,Consolas,Monaco,monospace;
+			font-size: 16px;
+		}
+
+		a {
+			border-bottom: 2px solid rgb(117, 113, 94);;
+		}
+
+		table {
+			border-collapse: collapse;
+		}
+
+		h1 {
+			color: rgb(117, 113, 94);
+			font-size: 32px !important;
+			text-align: center;
+		}
+
+		h1:before {
+			content: '<!-- ';
+		}
+
+		h1:after {
+			content: ' -->';
+		}
+
+		a {
+			color: #FFFFFF;
+			text-decoration: none;
+		}
+
+		input {
+			border: none;
+			outline: none;
+			border-radius: 2px;
+			background: transparent;
+			color: #66D9EF;
+			min-width: 500px;
+		}
+
+		h1,h2,h3,h4,h5,h6,p {
+			margin: 0;
+			padding: 0;
+		}
+
+		h2 {
+			color: rgb(102, 217, 239);
+		}
+
+		h3:hover:after {
+			content: '(Link)';
+			color: rgb(117, 113, 94);
+			padding-left: 10px;
+			font-size: 12px;
+		}
+
+		h3 {
+			color: rgb(166, 226, 46);
+		}
+
+		h3 label.get {
+			color: rgb(249, 38, 114);
+		}
+
+		h3 label.args {
+			color: rgb(230, 219, 116);
+		}
+
+		table {
+			overflow-x:auto;
+		}
+
+		thead {
+			color: rgb(117, 113, 94);
+			border-radius: 2px;
+		}
+
+		code {
+			background: rgba(0,0,0,0.1);
+			padding: 5px;
+		}
+
+		footer {
+			padding: 25px 0px;
+			text-align: center;
+		}
+
+		footer ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		footer a {
+			text-decoration: none;
+			color: inherit;
+		}
+
+		footer ul li {
+			color: rgb(117, 113, 94);
+		}
+
+		footer ul li:before { 
+			content: '<!--'
+		}
+
+		footer ul li:after { 
+			content: '-->'
+		}
+
+		@media screen and (max-width: 580px) {  
+			h1:before {
+				content: '';
+			}
+
+			h1:after {
+				content: '';
+			}
+		}
+
+	</style>
+</head>
+<body>
+
+	<h1>Random Birb API</h1>
+
+	<section>
+
+		<div class="endpoint">
+			<h2>Gets a Random Birb image.</h2>
+			<a href="https://random.birb.pw/tweet"><h3><label class="get">GET</label> /tweet/</h3></a>
+			<p>
+				Grabs you a random image from Random Birb.
+			</p>
+			<table style="width:100%">
+				<thead>
+					<th style="width: 25%;">Field</th>
+					<th style="width: 25%;">Type</th>
+					<th>Description</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>'url'</code></td>
+						<td>string</td> 
+						<td>Returns the identifier of an image.</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+	</section>
+
+	<footer>
+		<ul>
+			<li>
+				This website is under MIT License, source code is available <a href="https://github.com/jkke/random-birb">here</a>.
+			</li>
+
+			<li>
+				Please contact me <a href="mailto:jakeoid.public@gmail.com">here</a> with any image removal requests.
+			</li>
+		</ul>
+	</footer>
+
+</body>
+
+</html>
