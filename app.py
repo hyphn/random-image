@@ -66,7 +66,7 @@ async def tweetjson(ctx):
 async def tweetrandom(ctx):
     """Host the API in which you can get random birbs from."""
     url = randint(0, len(files) - 1)
-    return util.as_html('<meta http-equiv="refresh" content="0 url=http://birb.pw/img/%s" />' % files[url])
+    return util.as_html('<meta http-equiv="refresh" content="0 url=http://random.birb.pw/img/%s" />' % files[url])
 
 
 # Image Hoster.
