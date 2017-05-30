@@ -58,6 +58,18 @@
 			min-width: 500px;
 		}
 
+		img {
+			margin-top: 3rem;
+			border-radius: 2px;
+			box-shadow: 0px 3px 5px rgba(0,0,0,0.1);
+			user-drag: none; 
+			user-select: none;
+			-moz-user-select: none;
+			-webkit-user-drag: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+		}
+
 		h1,h2,h3,h4,h5,h6,p {
 			margin: 0;
 			padding: 0;
@@ -67,11 +79,16 @@
 			color: rgb(102, 217, 239);
 		}
 
+		h3 {
+			height: 40px;
+		}
+
 		h3:hover:after {
-			content: '(Link)';
+			content: '( Click to execute. )';
 			color: rgb(117, 113, 94);
 			padding-left: 10px;
-			font-size: 12px;
+			font-size: 50%;
+			vertical-align: middle;
 		}
 
 		h3 {
@@ -84,6 +101,11 @@
 
 		h3 label.args {
 			color: rgb(230, 219, 116);
+		}
+
+		div.endpoint {
+			padding-top: 3rem;
+			padding-top: 1.5rem;
 		}
 
 		table {
@@ -146,11 +168,15 @@
 
 	<section>
 
+		<center>
+			<img src="https://random.birb.pw/img/3Xhhf.jpg" />
+		</center>
+
 		<div class="endpoint">
 			<h2>Gets a Random Birb image.</h2>
-			<a href="https://random.birb.pw/tweet"><h3><label class="get">GET</label> /tweet/</h3></a>
+			<a href="https://random.birb.pw/tweet"><h3><label class="get">GET</label> /tweet</h3></a>
 			<p>
-				Grabs you a random image from Random Birb.
+				Grabs you an id of a random image from Random Birb.
 			</p>
 			<table style="width:100%">
 				<thead>
@@ -167,7 +193,45 @@
 				</tbody>
 			</table>
 		</div>
-		
+
+		<div class="endpoint">
+			<h2>Gets a Random Birb image.</h2>
+			<a href="https://random.birb.pw/tweet.json"><h3><label class="get">GET</label> /tweet.json</h3></a>
+			<p>
+				Grabs you an id of a random image from Random Birb as JSON.
+			</p>
+			<table style="width:100%">
+				<thead>
+					<th style="width: 25%;">Field</th>
+					<th style="width: 25%;">Type</th>
+					<th>Description</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>'url'</code></td>
+						<td>string</td> 
+						<td>Returns the identifier of an image.</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="endpoint">
+			<h2>Returns the Random Birb image.</h2>
+			<a href="https://random.birb.pw/tweet/random"><h3><label class="get">GET</label> /tweet/random</h3></a>
+			<p>
+				Sends you randomly to a different page.
+			</p>
+		</div>
+
+		<div class="endpoint">
+			<h2>Returns the Random Birb image.</h2>
+			<a href="https://random.birb.pw/img/"><h3><label class="get">GET</label> /img/&lt;id&gt;</h3></a>
+			<p>
+				Grabs you the random image from Birb and shows it.
+			</p>
+		</div>
+
 	</section>
 
 	<footer>
