@@ -16,6 +16,8 @@ from random import randint
 from os import walk, path
 # JSON
 import json
+# MIMETYPE
+import mimetypes
 
 # ############################
 
@@ -36,37 +38,119 @@ for (dirpath, dirnames, filenames) in walk('img/'):
 
 # ############################
 
+settings = None
+
+with open('settings.json') as settingsfile:
+    settings = json.load(settingsfile)
+
+# ############################
+
+ip = settings['server']['ip']
+port = settings['server']['port']
+
+# ############################
+
 
 # Site Index.
 @app.route("/")
 async def index(ctx):
     """Display the homepage of the website."""
-    with open("templates/index.html") as file:
-        return util.as_html(file.read())
+    try:
+        file_directory = 'templates/' + settings['pages']['index']
+    except:
+        file_directory = 'templates/index.html'
+
+    with open(file_directory) as file:
+        content = file.read()
+
+        content = content.replace(
+            '{{AMOUNT}}', str(len(files)))
+        content = content.replace(
+            '{{NAME}}', settings['meta']['name'])
+        content = content.replace(
+            '{{DESCRIPTION}}', settings['meta']['description'])
+        content = content.replace(
+            '{{TYPE}}', settings['meta']['type'])
+        content = content.replace(
+            '{{TYPE-PLURAL}}', settings['meta']['plural'])
+        content = content.replace(
+            '{{SITEURL}}', settings['meta']['siteurl'])
+        content = content.replace(
+            '{{ENDPOINT-MAIN}}', settings['endpoints']['main']['name'])
+        content = content.replace(
+            '{{ENDPOINT-JSON}}', settings['endpoints']['json']['name'])
+        content = content.replace(
+            '{{ENDPOINT-RANDOM}}', settings['endpoints']['random']['name'])
+
+        return util.as_html(content)
+
+
+# Assets Route.
+@app.route('/<folder>/<filename>')
+async def assets(ctx, folder, filename):
+    """Serve the images of the /img/ and other folders."""
+    location = folder + '/' + filename
+
+    with open(location, mode='rb') as file:
+        stream = file.read()
+
+    header = {
+        'Content-Type': mimetypes.guess_type(location)[0]
+    }
+
+    return util.Response(stream, status=200, headers=header)
 
 
 # Text API Endpoint.
-@app.route('/tweet/')
+@app.route(settings['endpoints']['main']['name'])
 async def tweet(ctx):
     """Host the API in which you can get random birbs from."""
+    if not settings['endpoints']['main']['enabled']:
+        return
+
     url = randint(0, len(files) - 1)
+
+    header = {
+        'Content-Type': 'text/plain'
+    }
+
     return util.as_html("%s" % files[url])
 
 
 # JSON API Endpoint.
-@app.route('/tweet.json/')
+@app.route(settings['endpoints']['json']['name'])
 async def tweetjson(ctx):
     """Host the API in which you can get random birbs from."""
+    if not settings['endpoints']['json']['enabled']:
+        return
+
     url = randint(0, len(files) - 1)
-    return json.dumps({'file': files[url]})
+
+    header = {
+        'Content-Type': 'application/javascript'
+    }
+
+    return util.Response(json.dumps({'file': files[url]}), status=200, headers=header)
 
 
 # Text API Endpoint.
-@app.route('/tweet/random')
+@app.route(settings['endpoints']['random']['name'])
 async def tweetrandom(ctx):
     """Host the API in which you can get random birbs from."""
+    if not settings['endpoints']['random']['enabled']:
+        return
+
     url = randint(0, len(files) - 1)
-    return util.as_html('<meta http-equiv="refresh" content="0 url=http://random.birb.pw/img/%s" />' % files[url])
+    location = 'img/' + files[url]
+
+    with open(location, mode='rb') as file:
+        stream = file.read()
+
+    header = {
+        'Content-Type': mimetypes.guess_type(location)[0]
+    }
+
+    return util.Response(stream, status=200, headers=header)
 
 
 # Image Hoster.
@@ -74,14 +158,89 @@ async def tweetrandom(ctx):
 async def image(ctx, filename):
     """Serve the images of the /img/ and other folders."""
     location = 'img/' + filename
+    filetype = filename.split('.')[1]
 
     with open(location, mode='rb') as file:
         stream = file.read()
 
-    return stream
+    header = {
+        'Content-Type': 'image/' + filetype
+    }
 
+    return util.Response(stream, status=200, headers=header)
+
+# ############################
+
+
+# Handle 404.
+@app.root.errorhandler(404)
+async def handle_404(ctx, exc):
+    """Serve the 404 (Not Found) Page."""
+    try:
+        file_directory = 'templates/' + settings['pages']['notfound']
+    except:
+        file_directory = 'templates/index.html'
+
+    with open(file_directory) as file:
+        content = file.read()
+
+        content = content.replace(
+            '{{AMOUNT}}', str(len(files)))
+        content = content.replace(
+            '{{NAME}}', settings['meta']['name'])
+        content = content.replace(
+            '{{DESCRIPTION}}', settings['meta']['description'])
+        content = content.replace(
+            '{{TYPE}}', settings['meta']['type'])
+        content = content.replace(
+            '{{TYPE-PLURAL}}', settings['meta']['plural'])
+        content = content.replace(
+            '{{SITEURL}}', settings['meta']['siteurl'])
+        content = content.replace(
+            '{{ENDPOINT-MAIN}}', settings['endpoints']['main']['name'])
+        content = content.replace(
+            '{{ENDPOINT-JSON}}', settings['endpoints']['json']['name'])
+        content = content.replace(
+            '{{ENDPOINT-RANDOM}}', settings['endpoints']['random']['name'])
+
+        return util.as_html(content)
+
+# Handle 404.
+
+
+@app.root.errorhandler(500)
+async def handle_500(ctx, exc):
+    """Serve the 500 (Server Error) Page."""
+    try:
+        file_directory = 'templates/' + settings['pages']['servererror']
+    except:
+        file_directory = 'templates/index.html'
+
+    with open(file_directory) as file:
+        content = file.read()
+
+        content = content.replace(
+            '{{AMOUNT}}', str(len(files)))
+        content = content.replace(
+            '{{NAME}}', settings['meta']['name'])
+        content = content.replace(
+            '{{DESCRIPTION}}', settings['meta']['description'])
+        content = content.replace(
+            '{{TYPE}}', settings['meta']['type'])
+        content = content.replace(
+            '{{TYPE-PLURAL}}', settings['meta']['plural'])
+        content = content.replace(
+            '{{SITEURL}}', settings['meta']['siteurl'])
+        content = content.replace(
+            '{{ENDPOINT-MAIN}}', settings['endpoints']['main']['name'])
+        content = content.replace(
+            '{{ENDPOINT-JSON}}', settings['endpoints']['json']['name'])
+        content = content.replace(
+            '{{ENDPOINT-RANDOM}}', settings['endpoints']['random']['name'])
+
+        return util.as_html(content)
 
 # ############################
 
 # Run our App.
-app.run(ip="127.0.0.1", port=5000)
+app.run(ip=ip, port=port)

@@ -28,99 +28,13 @@
 
 	<a href="{{SITEURL}}"><h1>Random {{TYPE}} API</h1></a>
 
+	<center><h2 style="text-transform: uppercase;">SORRY 404 -- NO {{TYPE}} FOUND.</h2></center>
+
 	<section>
 
 		<center>
 			<img src="{{SITEURL}}{{ENDPOINT-RANDOM}}" id="randombirbphoto" />
 		</center>
-
-		<div class="endpoint">
-			<h2>Gets a Random {{TYPE}} image.</h2>
-			<a href="{{SITEURL}}{{ENDPOINT-MAIN}}"><h3><label class="get">GET</label> {{ENDPOINT-MAIN}}</h3></a>
-			<p>
-				Grabs you an id of a random image from Random {{TYPE}}.
-			</p>
-			<table style="width:100%">
-				<thead>
-					<th style="width: 25%;">Field</th>
-					<th style="width: 25%;">Type</th>
-					<th>Description</th>
-				</thead>
-				<tbody>
-					<tr>
-						<td><code>--</code></td>
-						<td>plaintext</td> 
-						<td>Returns the identifier of an image.</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-		<div class="endpoint">
-			<h2>Gets a Random {{TYPE}} image.</h2>
-			<a href="{{SITEURL}}{{ENDPOINT-JSON}}"><h3><label class="get">GET</label> {{ENDPOINT-JSON}}</h3></a>
-			<p>
-				Grabs you an id of a random image from Random {{TYPE}} as JSON.
-			</p>
-			<table style="width:100%">
-				<thead>
-					<th style="width: 25%;">Field</th>
-					<th style="width: 25%;">Type</th>
-					<th>Description</th>
-				</thead>
-				<tbody>
-					<tr>
-						<td><code>'url'</code></td>
-						<td>string</td> 
-						<td>Returns the identifier of an image.</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-		<div class="endpoint">
-			<h2>Returns the Random {{TYPE}} image.</h2>
-			<a href="{{SITEURL}}{{ENDPOINT-RANDOM}}"><h3><label class="get">GET</label> {{ENDPOINT-RANDOM}}</h3></a>
-			<p>
-				Sends you randomly a image of a {{TYPE}}.
-			</p>
-			<table style="width:100%">
-				<thead>
-					<th style="width: 25%;">Field</th>
-					<th style="width: 25%;">Type</th>
-					<th>Description</th>
-				</thead>
-				<tbody>
-					<tr>
-						<td><code>--</code></td>
-						<td>image/**</td> 
-						<td>Returns the bytes of the image.</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-		<div class="endpoint">
-			<h2>Returns the Random {{TYPE}} image.</h2>
-			<a href="{{SITEURL}}/img"><h3><label class="get">GET</label> /img/&lt;id&gt;</h3></a>
-			<p>
-				Distributes the item back to you after you request it (CDN).
-			</p>
-			<table style="width:100%">
-				<thead>
-					<th style="width: 25%;">Field</th>
-					<th style="width: 25%;">Type</th>
-					<th>Description</th>
-				</thead>
-				<tbody>
-					<tr>
-						<td><code>--</code></td>
-						<td>image/**</td> 
-						<td>Returns the identifier of an image.</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
 
 	</section>
 
