@@ -14,11 +14,20 @@ Welcome to the Random Birb repository, inside of here you can find a resource in
 pip install -r ./requirements.txt
 ```
 
-### 2. Run the script and see what port it is running on.
+### 2. Rename `settings.template.json` to `settings.json` and edit contents.
+
+```
+nano settings.template.json >> settings.json
+```
+
+
+### 3. Run the script and head to the webpage in order to see it.
 
 ```
 python3.5 app.py
 ```
+
+With the standard install you should be able to click [here](http://127.0.0.1:5000/) and access it.
 
 # Contributing
 

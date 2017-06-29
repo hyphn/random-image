@@ -1,0 +1,46 @@
+{
+
+	"server": {
+		"_comment": "The settings in which the Kyoukai server will run on.",
+
+		"ip": "127.0.0.1",
+		"port": 5000
+	},
+
+	"endpoints": {
+		"_comment": "The endpoints in which we should watch (and whether they're enabled).",
+
+		"main": {
+			"name": "example",
+			"enabled": true
+		},
+
+		"json": {
+			"name": "example.json",
+			"enabled": true
+		},
+
+		"random": {
+			"name": "example/random",
+			"enabled": true
+		}
+	},
+
+	"pages": {
+		"_comment": "The pages in which we should statically should it be requested.",
+
+		"index": "index.html",
+		"servererror": "500.html",
+		"notfound": "404.html"
+	},
+
+	"meta": {
+		"_comment": "The meta tags for the static web pages that you serve (For SEO).",
+
+		"siteurl": "https://example.com",
+		"name": "Random Example API",
+		"description": "This API pulls up random photos of Examples.",
+		"author": "Jakeoid"
+	}
+
+}
