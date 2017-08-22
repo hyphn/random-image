@@ -1,23 +1,23 @@
 """
 
-RANDOM BIRB SITE.
+RANDOM IMAGE SITE.
 
 :copyright: (c) 2017 Jakeoid.
 :license: MIT, see LICENSE.md for details.
 
 """
 
-# KYOUKAI
-from kyoukai import Kyoukai
-from kyoukai import util
-# RANDOM
-from random import randint
-# OS
-from os import walk, path
-# JSON
+# HOUSEKEEPING
 import json
-# MIMETYPE
-import mimetypes
+import asyncio
+
+# RANDOM
+from random import choice
+from os import walk, path
+
+# KYOUKAI
+from kyoukai import Kyoukai, util
+from werkzeug import Response
 
 # ############################
 
@@ -38,18 +38,48 @@ for (dirpath, dirnames, filenames) in walk('img/'):
 
 # ############################
 
-settings = None
+# CLASS FOR SETTINGS
+class JSONFile:
+    """Instance of a configuration JSON File."""
 
-with open('settings.json') as settingsfile:
-    settings = json.load(settingsfile)
+    def __init__(self, filename: str, interval: int = 900, loop=None):
+        """Representative of a JSONFile Object.
+
+        You call this when creating a configuration file.
+
+        * filename - The name of the file in which JSON runs from.
+        * interval - The interval in which we call back and reload the file (seconds).
+        * loop - The asynchronous loop that the file will be called through.
+        """
+
+        self.filename = filename
+        self.interval = interval
+        self._reload()
+        loop = loop or asyncio.get_event_loop()
+        loop.create_task(self._task())
+
+    def _reload(self):
+        with open(self.filename) as f:
+            self.cache = json.load(f)
+
+    async def _task(self):
+        await asyncio.sleep(900)
+        self._reload()
+
+    def __getitem__(self, i):
+        """Return the cached item."""
+
+        return self.cache[i]
 
 # ############################
 
-ip = settings['server']['ip']
-port = settings['server']['port']
+SETTINGS = JSONFile("settings.json", loop=app.loop)
+
+# SERVER
+IP = SETTINGS['server']['ip'] or "0.0.0.0"
+PORT = SETTINGS['server']['port'] or 8080
 
 # ############################
-
 
 # Site Index.
 @app.route("/")
@@ -240,7 +270,8 @@ async def handle_500(ctx, exc):
 
         return util.as_html(content)
 
+
 # ############################
 
 # Run our App.
-app.run(ip=ip, port=port)
+app.run(IP, PORT)

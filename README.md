@@ -1,6 +1,6 @@
-# Random Birb.
+# Random Image.
 
-Welcome to the Random Birb repository, inside of here you can find a resource in which hosts the random images API. Inwhich none of the images of which Birb uses are hosted due to the fear of infringing on the terms of another individual.
+Welcome to the Random Image repository, inside of here you can find a resource in which hosts the random images API! Inwhich none of the images of which Birb uses are hosted due to the fear of infringing on the terms of another individual!
 
 [If you want to checkout a live version of the API head to here.](https://random.birb.pw/)
 
