@@ -29,14 +29,6 @@ h1 {
 	text-align: center;
 }
 
-h1:before {
-	content: '<!-- ';
-}
-
-h1:after {
-	content: ' -->';
-}
-
 a {
 	color: #FFFFFF;
 	text-decoration: none;
@@ -139,11 +131,11 @@ footer ul li {
 	color: rgb(117, 113, 94);
 }
 
-footer ul li:before { 
+footer ul li:before, h1:before { 
 	content: '<!--'
 }
 
-footer ul li:after { 
+footer ul li:after, h1:before { 
 	content: '-->'
 }
 
